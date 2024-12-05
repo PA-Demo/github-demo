@@ -23,6 +23,7 @@ jobs:
       uses: actions/setup-java@v3
       with:
         java-version: '11' # You can replace '11' with your Java version, e.g., '17'
+        distribution: temurin
 
     # Cache Maven dependencies to speed up the build process
     - name: Cache Maven dependencies
