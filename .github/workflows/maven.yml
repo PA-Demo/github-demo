@@ -39,7 +39,8 @@ jobs:
       run: mvn clean install --no-transfer-progress
   deployment:
     runs-on: ubuntu-latest
-    environment: production
+    environment: 
+      name: production
     needs: build
     steps:
       - name: deploy
