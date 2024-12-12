@@ -37,15 +37,26 @@ jobs:
     # Build and test the project using Maven
     - name: Build and test with Maven
       run: mvn clean install --no-transfer-progress
-  deployment:
+
+  deployment-dev:
     runs-on: ubuntu-latest
     environment: 
-      name: production
+      name: dev
     needs: build
     steps:
       - name: deploy
         run: |
-          echo "Deploying to Production..."
+          echo "Deploying to Dev..."
+          
+  deployment-prod:
+    runs-on: ubuntu-latest
+    environment: 
+      name: production
+    needs: deployment-dev
+    steps:
+      - name: deploy
+        run: |
+          echo "Deploying to Production... using Option App Restart Mode  $restart_mode from environment"
     # Optionally, run additional tests (e.g., integration tests, coverage) after build
     # - name: Run additional tests
     #   run: mvn verify # You can adjust this if you have other testing phases
