@@ -56,7 +56,7 @@ jobs:
     steps:
       - name: deploy
         run: |
-          echo "Deploying to Production... using Option App Restart Mode  $restart_mode from environment"
+          echo "Deploying to Production... using Option App Restart Mode ${{ vars.restart_mode }} from environment"
     # Optionally, run additional tests (e.g., integration tests, coverage) after build
     # - name: Run additional tests
     #   run: mvn verify # You can adjust this if you have other testing phases
