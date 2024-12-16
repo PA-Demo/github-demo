@@ -38,15 +38,35 @@ jobs:
     - name: Build and test with Maven
       run: mvn clean install --no-transfer-progress
 
-  code-scan:
+  analyze:
+    name: Analyze code with CodeQL
     runs-on: ubuntu-latest
-    environment: 
-      name: production
     needs: [build]
+
     steps:
-      - name: deploy
-        run: |
-          echo "Code Scan"
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up CodeQL
+      uses: github/codeql-action/setup-codeql@v2
+      with:
+        languages: 'python, javascript'  # Specify the languages you want CodeQL to analyze
+
+    - name: Initialize CodeQL database
+      run: |
+        mkdir -p codeql-db
+        codeql database create codeql-db --language=python  # You can add more languages here as needed
+        codeql database create codeql-db --language=javascript
+
+    - name: Perform CodeQL analysis
+      run: |
+        codeql analyze --format=sarif-latest --output=codeql-results.sarif codeql-db
+
+    - name: Upload CodeQL results to GitHub
+      uses: github/codeql-action/upload-sarif@v2
+      with:
+        sarif_file: codeql-results.sarif
+
           
   deployment-dev:
     runs-on: ubuntu-latest
@@ -62,7 +82,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: 
       name: production
-    needs: [deployment-dev, code-scan]
+    needs: [deployment-dev, analyze]
     steps:
       - name: deploy
         run: |
