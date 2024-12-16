@@ -48,7 +48,7 @@ jobs:
       uses: actions/checkout@v3
 
     - name: Set up CodeQL
-      uses: github/codeql-action/setup-codeql@v2
+      uses: github/codeql-action/setup-codeql@v1
       with:
         languages: 'python, javascript, java'  # Specify the languages you want CodeQL to analyze
 
@@ -57,6 +57,7 @@ jobs:
         mkdir -p codeql-db
         codeql database create codeql-db --language=python  # You can add more languages here as needed
         codeql database create codeql-db --language=javascript
+        codeql database create codeql-db --language=java
 
     - name: Perform CodeQL analysis
       run: |
