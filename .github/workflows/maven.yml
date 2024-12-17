@@ -52,21 +52,11 @@ jobs:
       with:
         languages: 'python, javascript, java'  # Specify the languages you want CodeQL to analyze
 
-    - name: Initialize CodeQL database
-      run: |
-        mkdir -p codeql-db
-        codeql database create codeql-db --language=python  # You can add more languages here as needed
-        codeql database create codeql-db --language=javascript
-        codeql database create codeql-db --language=java
+    - name: Autobuild
+      uses: github/codeql-action/autobuild@v1
 
-    - name: Perform CodeQL analysis
-      run: |
-        codeql analyze --format=sarif-latest --output=codeql-results.sarif codeql-db
-
-    - name: Upload CodeQL results to GitHub
-      uses: github/codeql-action/upload-sarif@v2
-      with:
-        sarif_file: codeql-results.sarif
+    - name: Perform CodeQL Analysis
+      uses: github/codeql-action/analyze@v1
 
           
   deployment-dev:
