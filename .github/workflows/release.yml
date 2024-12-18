@@ -15,10 +15,10 @@ jobs:
         uses: actions/checkout@v2
 
       # Step 2: Set up GitHub CLI (or any other CLI if you're deploying elsewhere)
-      - name: Set up GitHub CLI
-        uses: cli/cli-action@v2
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}  # Use GitHub token for authentication
+      #- name: Set up GitHub CLI
+      #  uses: cli/cli-action@v2
+      #  with:
+      #    github-token: ${{ secrets.GITHUB_TOKEN }}  # Use GitHub token for authentication
 
       # Step 3: Create a release on GitHub (this will use the tag from the push event)
       - name: Create a GitHub Release
