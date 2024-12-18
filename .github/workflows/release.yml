@@ -23,7 +23,7 @@ jobs:
       # Step 3: Create a release on GitHub (this will use the tag from the push event)
       - name: Create a GitHub Release
         run: |
-          TAG_NAME=${github.ref}  # Extract the tag name from the event reference
+          TAG_NAME=${{ github.ref_name }}  # Extract the tag name from the event reference
           GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }}
           
       # Step 5: Notify (optional, e.g., sending a notification or Slack message)
