@@ -1,4 +1,4 @@
-name: Java CI with Maven
+name: Build Demo Project
 
 # Trigger the workflow on push to any branch or on pull request creation
 on:
