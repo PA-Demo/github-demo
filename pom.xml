@@ -2,7 +2,7 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>demo-projects</groupId>
-  <artifactId>github-demo-app</artifactId>
+  <artifactId>github-demo-app1</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <name>Archetype - github-demo-app</name>
   <url>http://maven.apache.org</url>
@@ -14,4 +14,37 @@
      <url>https://maven.pkg.github.com/OWNER/REPOSITORY</url>
    </repository>
 </distributionManagement>
+
+  <build>
+  <finalName>${project.artifactId}-${project.version}</finalName>
+  <sourceDirectory>src</sourceDirectory>
+  <testSourceDirectory>test</testSourceDirectory>
+  <resources>
+    <resource>
+      <directory>src</directory>
+      <excludes>
+        <exclude>**/*.java</exclude>
+      </excludes>
+    </resource>
+  </resources>
+  <testResources>
+    <testResource>
+      <directory>test</directory>
+      <excludes>
+        <exclude>**/*.java</exclude>
+      </excludes>
+    </testResource>
+  </testResources>
+  <plugins>
+    <plugin>
+      <groupId>org.apache.maven.plugins</groupId>
+      <artifactId>maven-compiler-plugin</artifactId>
+      <configuration>
+        <source>${maven.compiler.source}</source>
+        <target>${maven.compiler.target}</target>
+      </configuration>
+    </plugin>
+  </plugins>
+
+</build>
 </project>
