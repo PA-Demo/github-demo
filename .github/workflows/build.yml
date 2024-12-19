@@ -44,7 +44,11 @@ jobs:
     name: Analyze code with CodeQL
     runs-on: ubuntu-latest
     needs: [build]
-
+    permissions:
+      actions: read
+      contents: read
+      security-events: write  # Permissions for CodeQL results
+      
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
